@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RemitaIntegrate.NET
+namespace RemitaIntegrate.NET.Config
 {
     public enum RemitaTransactioncodes
     {

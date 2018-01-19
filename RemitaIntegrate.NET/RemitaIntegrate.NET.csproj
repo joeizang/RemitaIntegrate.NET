@@ -6,6 +6,13 @@
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="Unity" Version="5.5.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UnityHelper">
+      <HintPath>..\..\..\..\Desktop\UnityHelper.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

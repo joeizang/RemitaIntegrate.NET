@@ -1,11 +1,9 @@
 ﻿using RemitaIntegrate.NET.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using RemitaIntegrate.NET.Abstractions;
 
-namespace RemitaIntegrate.NET
+namespace RemitaIntegrate.NET.Config
 {
-    public class RemitaConfig
+    public class RemitaConfig : IntegrateConfig
     {
 
         public RemitaConfig(string merchantId, string serviceTypeId,  string apiKey )
@@ -19,7 +17,10 @@ namespace RemitaIntegrate.NET
             MerchantId = merchantId;
             ServiceTypeId = serviceTypeId;
             ApiKey = apiKey;
+            GateWayUrl = "https://login.remita.net/remita/ecomm/init.reg";
+            CheckStatusUrl = "https://login.remita.net/remita/ecomm";
         }
+
         //public const string MERCHANTID = "2587711795";
         //public const string CHECKSTATUSURL = "https://login.remita.net/remita/ecomm";
         //public const string GATEWAYURL = "https://login.remita.net/remita/ecomm/init.reg";
@@ -27,15 +28,6 @@ namespace RemitaIntegrate.NET
         //public const string SERVICETYPEID = "2587615591";
         //public const string APIKEY = "245183";
 
-        public string MerchantId { get; private set; }
-
-        public string ServiceTypeId { get; private set; }
-
-        public string ApiKey { get; private set; }        
-
-        public string GateWayUrl { get; private set; } = "https://login.remita.net/remita/ecomm/init.reg";
-
-        public string CheckStatusUrl { get; private set; }
-
+        
     }
 }

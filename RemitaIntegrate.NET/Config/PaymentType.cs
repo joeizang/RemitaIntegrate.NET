@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RemitaIntegrate.NET
+namespace RemitaIntegrate.NET.Config
 {
     public enum PaymentType
     {

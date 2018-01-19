@@ -18,5 +18,16 @@ namespace RemitaIntegrate.NET
 
         [DataMember(Name = "message")]
         public string Message { get; set; }
+
+
+
+        void Test()
+        {
+            var hashed = myHash.HashRemitedValidate(hasPayed.OrderId, RemitaConfigParams.APIKEY, RemitaConfigParams.MERCHANTID);
+            string checkurl = RemitaConfigParams.CHECKSTATUSURL + "/" + RemitaConfigParams.MERCHANTID + "/" + hasPayed.OrderId 
+                + "/" + hashed + "/" + "orderstatus.reg";
+            string jsondata = new WebClient().DownloadString(checkurl);
+            var result = JsonConvert.DeserializeObject<RemitaResponse>(jsondata);
+        }
     }
 }

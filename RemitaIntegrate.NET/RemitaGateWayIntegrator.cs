@@ -18,15 +18,14 @@ namespace RemitaIntegrate.NET
         {
             _hasher = hasher;
         }
-        public RemitaResponse PrepareParametersForPaymentStatusCheck(string OrderId)
+        public RemitaResponse PerformPaymentStatusCheck(string OrderId)
         {
             var hashed = _hasher.HashRemitedValidate(OrderId);
-            string checkurl = Config.CheckStatusUrl + "/" + Config.MerchantId + "/" + OrderId
-                + "/" + hashed + "/" + "orderstatus.reg";
+            string checkurl = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{OrderId}/{hashed}/orderstatus.reg";
             return JsonDeserialize(checkurl);
         }
 
-        public RemitaResponse PrepareParametersForRRRStatus(string rrr)
+        public RemitaResponse CheckRrrStatus(string rrr)
         {
             var hashed = _hasher.HashRrrQuery(rrr);
             var url = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{rrr}/{hashed}/status.reg";

@@ -13,7 +13,7 @@ namespace RemitaIntegrate.NET
         public Bootstrapper()
         {
             
-            Container = new UnityContainerExtension((IUnityContainer) new UnityContainer());
+            //Container = new UnityContainerExtension((IUnityContainer) new UnityContainer());
         }
     }
 }

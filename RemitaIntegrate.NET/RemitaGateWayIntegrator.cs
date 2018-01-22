@@ -1,6 +1,9 @@
-﻿using RemitaIntegrate.NET.Abstractions;
+﻿using Newtonsoft.Json;
+using RemitaIntegrate.NET.Abstractions;
+using RemitaIntegrate.NET.Config;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace RemitaIntegrate.NET
@@ -9,17 +12,31 @@ namespace RemitaIntegrate.NET
     {
         private readonly RemitaHashGenerator _hasher;
 
+        public IntegrateConfig Config { get; set; }
+
         public RemitaGateWayIntegrator(RemitaHashGenerator hasher)
         {
             _hasher = hasher;
         }
-        public void PrepareParameters()
+        public RemitaResponse PrepareParametersForPaymentStatusCheck(string OrderId)
         {
-            var hashed = _hasher.HashRemitedValidate(hasPayed.OrderId, RemitaConfigParams.APIKEY, RemitaConfigParams.MERCHANTID);
-            string checkurl = RemitaConfig.CHECKSTATUSURL + "/" + RemitaConfig.MERCHANTID + "/" + hasPayed.OrderId
+            var hashed = _hasher.HashRemitedValidate(OrderId);
+            string checkurl = Config.CheckStatusUrl + "/" + Config.MerchantId + "/" + OrderId
                 + "/" + hashed + "/" + "orderstatus.reg";
+            return JsonDeserialize(checkurl);
+        }
+
+        public RemitaResponse PrepareParametersForRRRStatus(string rrr)
+        {
+            var hashed = _hasher.HashRrrQuery(rrr);
+            var url = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{rrr}/{hashed}/status.reg";
+            return JsonDeserialize(url);
+        }
+
+        private static RemitaResponse JsonDeserialize(string checkurl)
+        {
             string jsondata = new WebClient().DownloadString(checkurl);
-            var result = JsonConvert.DeserializeObject<RemitaResponse>(jsondata);
+            return JsonConvert.DeserializeObject<RemitaResponse>(jsondata);
         }
     }
 }

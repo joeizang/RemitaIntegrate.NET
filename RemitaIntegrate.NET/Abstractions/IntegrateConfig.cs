@@ -23,6 +23,10 @@ namespace RemitaIntegrate.NET.Abstractions
 
         public string GateWayUrl { get; protected set; } = "https://login.remita.net/remita/ecomm/init.reg";
 
-        public string CheckStatusUrl { get; protected set; }
+        public string CheckStatusUrl { get; protected set; } = "https://login.remita.net/remita/ecomm";
+
+        public string DemoGateWayUrl { get; protected set; } = "https://login.remitademo.net/remita/ecomm/init.reg";
+
+        public string DemoCheckStatusUrl { get; protected set; } = "https://login.remitademo.net/remita/ecomm";
     }
 }

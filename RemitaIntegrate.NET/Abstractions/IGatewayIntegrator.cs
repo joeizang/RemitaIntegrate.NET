@@ -6,6 +6,6 @@ namespace RemitaIntegrate.NET.Abstractions
 {
     public interface IGatewayIntegrator
     {
-        void PrepareParameters();
+        RemitaResponse PrepareParametersForPaymentStatusCheck(string orderid);
     }
 }

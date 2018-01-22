@@ -8,49 +8,62 @@ namespace RemitaIntegrate.NET
 {
     public class RemitaHashGenerator
     {
+        /// <summary>
+        /// Remita configuration that holds all the constants given by remita
+        /// and allows for basic config values for other things like the apikey
+        /// merchantid and servicetypeid to vary from client to client.
+        /// </summary>
         public IntegrateConfig Config { get; private set; }
 
+        /// <summary>
+        /// Hasher required to perform all hashing required by remita.
+        /// Use an IoC container to resolve to SHA512Managed instance
+        /// </summary>
         public SHA512 HasherBase { get; private set; }
+
+
         public RemitaHashGenerator(RemitaConfig config, SHA512 hasher)
         {
             Config = config;
             HasherBase = hasher;
         }
+
+
         public string HashRemitaRequest(RemitaPost post)
         {
-            string hash_string = post.MerchantId + post.ServiceTypeId + post.OrderId + post.Amount 
+            var hashString = post.MerchantId + post.ServiceTypeId + post.OrderId + post.Amount 
             + post.ResponseUrl + Config.ApiKey;
             
-            Byte[] EncryptedSHA512 = ComputeHash(hash_string);
+            Byte[] encryptedSha512 = ComputeHash(hashString);
             HasherBase.Clear();
-            return BitConverter.ToString(EncryptedSHA512).Replace("-", "").ToLower();
+            return BitConverter.ToString(encryptedSha512).Replace("-", "").ToLower();
         }
 
-        public string HashRemitedValidate(string orderID)
+        public string HashRemitedValidate(string orderId)
         {
-            string hash_string = orderID + Config.ApiKey + Config.MerchantId;
+            var hashString = orderId + Config.ApiKey + Config.MerchantId;
             
-            Byte[] EncryptedSHA512 = ComputeHash(hash_string);
+            Byte[] encryptedSha512 = ComputeHash(hashString);
             HasherBase.Clear();
-            return BitConverter.ToString(EncryptedSHA512).Replace("-", "").ToLower();
+            return BitConverter.ToString(encryptedSha512).Replace("-", "").ToLower();
         }
 
         public string HashRemitedRePost(string rrr)
         {
-            string hash_string = Config.MerchantId + rrr + Config.ApiKey;
+            var hashString = Config.MerchantId + rrr + Config.ApiKey;
             
-            Byte[] EncryptedSHA512 = ComputeHash(hash_string);
+            Byte[] encryptedSha512 = ComputeHash(hashString);
             HasherBase.Clear();
-            return BitConverter.ToString(EncryptedSHA512).Replace("-", "").ToLower();
+            return BitConverter.ToString(encryptedSha512).Replace("-", "").ToLower();
         }
 
         public string HashRrrQuery(string rrr)/*, string apiKey, string merchantId)*/
         {
-            string hash_string = rrr + Config.ApiKey + Config.MerchantId;
+            var hashString = rrr + Config.ApiKey + Config.MerchantId;
 
-            byte[] EncryptedSHA512 = ComputeHash(hash_string);
+            byte[] encryptedSha512 = ComputeHash(hashString);
             HasherBase.Clear();
-            return BitConverter.ToString(EncryptedSHA512).Replace("-", "").ToLower();
+            return BitConverter.ToString(encryptedSha512).Replace("-", "").ToLower();
         }
 
         private byte[] ComputeHash(string hashstring)

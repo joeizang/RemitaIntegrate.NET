@@ -4,6 +4,7 @@ using RemitaIntegrate.NET.Abstractions;
 using RemitaIntegrate.NET.Config;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -36,6 +37,8 @@ namespace RemitaIntegrate.NETTests
 
             //Assert
             Assert.IsInstanceOf(typeof(string),result);
+            //usually SHA512Managed hashes are 128 characters long if you remove the dashes.
+            Assert.AreEqual(result.Count(), 128);
 
         }
 

@@ -19,6 +19,8 @@ namespace RemitaIntegrate.NET.Abstractions
 
         public string ServiceTypeId { get; protected set; }
 
+        public Dictionary<string,string> ServiceTypes { get; set; }
+        
         public string ApiKey { get; protected set; }
 
         public string GateWayUrl { get; protected set; } = "https://login.remita.net/remita/ecomm/init.reg";

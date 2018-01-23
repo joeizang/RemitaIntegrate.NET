@@ -21,7 +21,7 @@ namespace RemitaIntegrate.NETTests
                 Amount = "500",
                 ResponseUrl = "http://testdomain.local/returnurl",
                 RemitaPaymentType = PaymentType.MASTERCARD,
-                OrderId = DateTime.UtcNow.Ticks.ToString(),
+                OrderId = DateTimeOffset.UtcNow.Ticks.ToString(),
                 PayerEmail = "someemail@testdomain.local",
                 PayerName = "Tester Domain",
                 PayerPhone = "08032491753"
@@ -31,16 +31,15 @@ namespace RemitaIntegrate.NETTests
             var hasher = new RemitaHashGenerator(config, new SHA512Managed());
             remitapost.MerchantId = config.MerchantId;
             remitapost.ServiceTypeId = config.ServiceTypeId;
-
-
             //Act
             var result = hasher.HashRemitaRequest(remitapost);
 
             //Assert
-
             Assert.IsInstanceOf(typeof(string),result);
 
         }
+
+        //public void TestThat
     }
 
     public class TestRemitaPost : RemitaPost

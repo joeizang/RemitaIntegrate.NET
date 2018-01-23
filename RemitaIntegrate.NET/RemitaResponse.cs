@@ -18,12 +18,5 @@ namespace RemitaIntegrate.NET
 
         [DataMember(Name = "message")]
         public string Message { get; set; }
-
-
-
-        void Test()
-        {
-            
-        }
     }
 }

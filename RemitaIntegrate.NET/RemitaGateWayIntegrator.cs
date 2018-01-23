@@ -19,7 +19,7 @@ namespace RemitaIntegrate.NET
         {
             _hasher = hasher;
         }
-        public RemitaResponse PerformPaymentStatusCheck(string orderId, string url = null)
+        public virtual RemitaResponse PerformPaymentStatusCheck(string orderId, string url = null)
         {
             var hashed = _hasher.HashRemitedValidate(orderId);
             var checkurl = url;
@@ -33,7 +33,7 @@ namespace RemitaIntegrate.NET
             return JsonDeserialize(checkurl);
         }
 
-        public RemitaResponse CheckRrrStatus(string rrr)
+        public virtual RemitaResponse CheckRrrStatus(string rrr)
         {
             var hashed = _hasher.HashRrrQuery(rrr);
             var url = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{rrr}/{hashed}/status.reg";

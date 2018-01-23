@@ -1,10 +1,11 @@
-﻿using NSubstitute;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using RemitaIntegrate.NET;
 using RemitaIntegrate.NET.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
+using RemitaIntegrate.NET.Config;
 
 namespace RemitaIntegrate.NETTests
 {
@@ -13,16 +14,26 @@ namespace RemitaIntegrate.NETTests
     {
 
         [Test]
-        public void TestParameterPreparation()
+        public void TestPerformPaymentStatusCheck()
         {
-            var rintegrator = Substitute.For<RemitaGateWayIntegrator>();
+            //Arrange
+            var config = new RemitaIntegrateConfig("6789ab", "12345", "123456789");
 
-            rintegrator.Config = Substitute.For<IntegrateConfig>();
-            rintegrator.Config.ApiKey.Returns("abc123");
-            rintegrator.Config.ServiceTypeId.Returns("12345");
-            rintegrator.Config.MerchantId.Returns("6789ab");
-            rintegrator.Config.GateWayUrl.Returns("https://testdomain.local/status");
+            var hasher = new RemitaHashGenerator(config, new SHA512Managed());
 
+            var rintegrator = new RemitaGateWayIntegrator(hasher);
+
+
+
+        }
+    }
+
+    public class RemitaIntegrateConfig : RemitaConfig
+    {
+
+        public RemitaIntegrateConfig(string merchantId, string serviceTypeId, string apiKey) 
+            : base(merchantId, serviceTypeId, apiKey)
+        {
         }
     }
 }

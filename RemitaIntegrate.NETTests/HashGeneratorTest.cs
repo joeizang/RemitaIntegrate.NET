@@ -16,14 +16,16 @@ namespace RemitaIntegrate.NETTests
         public void TestThatHasherReturnsProperHash()
         {
             //Arrange
-            var remitapost = new TestRemitaPost();
-            remitapost.Amount = "500";
-            remitapost.ResponseUrl = "http://testdomain.local/returnurl";
-            remitapost.RemitaPaymentType = PaymentType.MASTERCARD;
-            remitapost.OrderId = DateTime.UtcNow.Ticks.ToString();
-            remitapost.PayerEmail = "someemail@testdomain.local";
-            remitapost.PayerName = "Tester Domain";
-            remitapost.PayerPhone = "08032491753" ;
+            var remitapost = new TestRemitaPost
+            {
+                Amount = "500",
+                ResponseUrl = "http://testdomain.local/returnurl",
+                RemitaPaymentType = PaymentType.MASTERCARD,
+                OrderId = DateTime.UtcNow.Ticks.ToString(),
+                PayerEmail = "someemail@testdomain.local",
+                PayerName = "Tester Domain",
+                PayerPhone = "08032491753"
+            };
 
             var config = new TestRemitaConfig("33411123", "77783221234", "2345");
             var hasher = new RemitaHashGenerator(config, new SHA512Managed());

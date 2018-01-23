@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace RemitaIntegrate.NET
 {
@@ -18,10 +19,17 @@ namespace RemitaIntegrate.NET
         {
             _hasher = hasher;
         }
-        public RemitaResponse PerformPaymentStatusCheck(string OrderId)
+        public RemitaResponse PerformPaymentStatusCheck(string orderId, string url = null)
         {
-            var hashed = _hasher.HashRemitedValidate(OrderId);
-            string checkurl = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{OrderId}/{hashed}/orderstatus.reg";
+            var hashed = _hasher.HashRemitedValidate(orderId);
+            var checkurl = url;
+
+            var rgxUrl = new 
+         Regex("^(ht|f)tp(s?)\\:\\/\\/[0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*(:(0-9)*)*(\\/?)([a-zA-Z0-9\\-\\.\\?\\,\\\'\\/\\\\\\+&%\\$#_]*)?$");
+
+            if (string.IsNullOrWhiteSpace(checkurl) && !rgxUrl.IsMatch(checkurl))
+                checkurl = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{orderId}/{hashed}/orderstatus.reg";
+            
             return JsonDeserialize(checkurl);
         }
 
@@ -34,7 +42,7 @@ namespace RemitaIntegrate.NET
 
         private static RemitaResponse JsonDeserialize(string checkurl)
         {
-            string jsondata = new WebClient().DownloadString(checkurl);
+            var jsondata = new WebClient().DownloadString(checkurl);
             return JsonConvert.DeserializeObject<RemitaResponse>(jsondata);
         }
     }

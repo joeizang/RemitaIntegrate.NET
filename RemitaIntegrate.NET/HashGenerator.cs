@@ -22,7 +22,7 @@ namespace RemitaIntegrate.NET
         public SHA512 HasherBase { get; private set; }
 
 
-        public RemitaHashGenerator(RemitaConfig config, SHA512 hasher)
+        public RemitaHashGenerator(IntegrateConfig config, SHA512 hasher)
         {
             Config = config;
             HasherBase = hasher;

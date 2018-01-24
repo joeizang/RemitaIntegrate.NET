@@ -1,11 +1,17 @@
-﻿using RemitaIntegrate.NET.Exceptions;
+﻿using System.Collections;
+using RemitaIntegrate.NET.Exceptions;
 using RemitaIntegrate.NET.Abstractions;
 
 namespace RemitaIntegrate.NET.Config
 {
     public class RemitaConfig : IntegrateConfig
     {
-
+        /// <summary>
+        /// Overload to handle when a merchant has only one servicetype handled by Remita.
+        /// </summary>
+        /// <param name="merchantId"></param>
+        /// <param name="serviceTypeId"></param>
+        /// <param name="apiKey"></param>
         public RemitaConfig(string merchantId, string serviceTypeId,  string apiKey )
         {
             if(string.IsNullOrWhiteSpace(merchantId) && string.IsNullOrWhiteSpace(serviceTypeId) && 
@@ -20,6 +26,37 @@ namespace RemitaIntegrate.NET.Config
             GateWayUrl = "https://login.remita.net/remita/ecomm/init.reg";
             CheckStatusUrl = "https://login.remita.net/remita/ecomm";
         }
+
+        public RemitaConfig()
+        {
+            
+        }
+
+        /// <summary>
+        /// Constructor overload to handle scenario where merchant has more than one service type.
+        /// </summary>
+        /// <param name="merchantId">ID of merchant from Remita</param>
+        /// <param name="serviceType">Reference type that holds ICollection of service types</param>
+        /// <param name="apiKey">ApiKey given by Remita</param>
+        public RemitaConfig(string merchantId, ServiceType serviceType, string apiKey)
+        {
+            if (string.IsNullOrWhiteSpace(merchantId) && string.IsNullOrWhiteSpace(apiKey) 
+                                                      && serviceType == null || serviceType.ServiceTypes.Count < 1)
+                throw new RemitaConfigException("You are missing either merchant id, api key or your service types.");
+            MerchantId = merchantId;
+            ApiKey = apiKey;
+            SetServiceTypes(serviceType);
+        }
+
+        protected void SetServiceTypes(ServiceType servicet)
+        {
+            foreach (var service in servicet.ServiceTypes)
+            {
+                ServiceTypes.Add(service.Key, service.Value);
+            }
+        }
+
+
 
         //public const string MERCHANTID = "2587711795";
         //public const string CHECKSTATUSURL = "https://login.remita.net/remita/ecomm";

@@ -35,19 +35,9 @@ namespace RemitaIntegrate.NETTests
 
             //Assert
             //Assert.AreEqual(2,result);
-            Assert.AreEqual("hostelfees",sample.ServiceTypes.Keys.Single(x => x.Equals("hostelfees")));
+            Assert.AreEqual(true,sample.ServiceTypes.ContainsKey("hostelfees"));
 
         }
     }
 
-    //public class SampleConfig : RemitaConfig
-    //{
-    //    public SampleConfig(string merchantid, ServiceType service, string apikey) : base(merchantid, service,apikey)
-    //    {
-    //        MerchantId = merchantid;
-    //        ApiKey = apikey;
-    //        SetServiceTypes(service);
-    //    }
-
-    //}
 }

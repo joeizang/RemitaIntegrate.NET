@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RemitaIntegrate.NET.Abstractions;
-using RemitaIntegrate.NET.Config;
-using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace RemitaIntegrate.NET
@@ -19,6 +15,16 @@ namespace RemitaIntegrate.NET
         {
             _hasher = hasher;
         }
+
+
+        public virtual string PerformNewPaymentHashing(RemitaPost post)
+        {
+            return _hasher.HashRemitaRequest(post);
+        }
+
+
+
+
         public virtual RemitaResponse PerformPaymentStatusCheck(string orderId, string url = null)
         {
             var hashed = _hasher.HashRemitedValidate(orderId);

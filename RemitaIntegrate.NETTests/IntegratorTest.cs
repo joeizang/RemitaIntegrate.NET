@@ -44,6 +44,16 @@ namespace RemitaIntegrate.NETTests
             //Assert
             Assert.IsInstanceOf(typeof(RemitaResponse), result);
         }
+
+        [Test]
+        public void IntegrationTestToDemoSiteReturnsRemitaResponse()
+        {
+            var config = new RemitaIntegrateConfig("2587711795", "2587615591", "245183");
+            var hasher = new RemitaHashGenerator(config, new SHA512Managed());
+            var integrator = new RemitaGateWayIntegrator(hasher);
+
+            //integrator.PerformPaymentStatusCheck()
+        }
     }
 
     public class JsonThing

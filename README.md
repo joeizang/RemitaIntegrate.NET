@@ -4,4 +4,4 @@
 
 Remita Integration Library that works with asp.net mvc / aspnet core and maybe webforms (not so sure about webforms). 
 It is a netstandard 2.0 based solution so will need to run further tests to back the claim for it working with webforms.
-Try it and star the project if you find this helpful (shameless plug)!
+Try it and star the project if you find this helpful (shameless plug)! This project is open source and is not affiliated with any paid service. It will remain open source for the forseeable future.

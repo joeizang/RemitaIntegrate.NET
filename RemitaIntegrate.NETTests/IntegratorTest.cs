@@ -45,14 +45,42 @@ namespace RemitaIntegrate.NETTests
             Assert.IsInstanceOf(typeof(RemitaResponse), result);
         }
 
+        public void MakeNewDemoPayment()
+        {
+            var config = new RemitaIntegrateConfig("2547916", "4430731", "1946");
+            var hasher = new RemitaHashGenerator(config, new SHA512Managed());
+            var integrator = new RemitaGateWayIntegrator(hasher);
+            var post = new DemoPost
+            {
+                MerchantId = config.MerchantId,
+                ServiceTypeId = config.ServiceTypeId,
+                Amount = "500",
+                PayerEmail = "payer@payer.ru",
+                PayerId = Guid.NewGuid().ToString(),
+                PayerName = "Payer paypay",
+                PayerPhone = "08032444499",
+                OrderId = DateTimeOffset.UtcNow.Ticks.ToString(),
+                ResponseUrl = "http://localhost/testing",
+                RemitaPaymentType = PaymentType.VISA
+            };
+
+            post.Hash = hasher.HashRemitaRequest(post);
+
+        }
+
         [Test]
         public void IntegrationTestToDemoSiteReturnsRemitaResponse()
         {
-            var config = new RemitaIntegrateConfig("2587711795", "2587615591", "245183");
+            var config = new RemitaIntegrateConfig("2547916", "4430731", "1946");
             var hasher = new RemitaHashGenerator(config, new SHA512Managed());
             var integrator = new RemitaGateWayIntegrator(hasher);
+            var url = string.Empty;
+            //Act
+            var result = integrator.PerformPaymentStatusCheck("636516010398923976");
 
-            //integrator.PerformPaymentStatusCheck()
+            //Assert
+            //Assert.IsFalse(!string.IsNullOrWhiteSpace(result.Rrr));
+
         }
     }
 
@@ -74,5 +102,10 @@ namespace RemitaIntegrate.NETTests
             : base(merchantId, serviceTypeId, apiKey)
         {
         }
+    }
+
+    public class DemoPost : RemitaPost
+    {
+
     }
 }

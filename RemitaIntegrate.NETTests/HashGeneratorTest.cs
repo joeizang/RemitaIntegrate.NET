@@ -28,7 +28,7 @@ namespace RemitaIntegrate.NETTests
                 PayerPhone = "08032491753"
             };
 
-            var config = new TestRemitaConfig("33411123", "77783221234", "2345");
+            var config = new TestRemitaConfig("2547916", "77783221234", "2345");
             var hasher = new RemitaHashGenerator(config, new SHA512Managed());
             remitapost.MerchantId = config.MerchantId;
             remitapost.ServiceTypeId = config.ServiceTypeId;

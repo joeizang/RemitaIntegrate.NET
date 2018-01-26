@@ -34,7 +34,7 @@ namespace RemitaIntegrate.NET
          Regex("^(ht|f)tp(s?)\\:\\/\\/[0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*(:(0-9)*)*(\\/?)([a-zA-Z0-9\\-\\.\\?\\,\\\'\\/\\\\\\+&%\\$#_]*)?$");
 
             if (string.IsNullOrWhiteSpace(checkurl))
-                checkurl = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{orderId}/{hashed}/orderstatus.reg";
+                checkurl = $"{Config.BaseUrl}/{Config.MerchantId}/{orderId}/{hashed}/orderstatus.reg";
             rgxUrl.IsMatch(checkurl);
             return JsonDeserialize(checkurl);
         }
@@ -42,14 +42,14 @@ namespace RemitaIntegrate.NET
         public virtual RemitaResponse PerformPaymentStatusCheck(string orderId)
         {
             var hashed = _hasher.HashRemitedValidate(orderId);
-            var checkurl = Config.CheckStatusUrl+"/"+Config.MerchantId+"/"+orderId+"/"+hashed+"/orderstatus.reg";
+            var checkurl = Config.BaseUrl+"/"+Config.MerchantId+"/"+orderId+"/"+hashed+"/orderstatus.reg";
             return JsonDeserialize(checkurl);
         }
 
         public virtual RemitaResponse CheckRrrStatus(string rrr)
         {
             var hashed = _hasher.HashRrrQuery(rrr);
-            var url = $"{Config.CheckStatusUrl}/{Config.MerchantId}/{rrr}/{hashed}/status.reg";
+            var url = $"{Config.BaseUrl}/{Config.MerchantId}/{rrr}/{hashed}/status.reg";
             return JsonDeserialize(url);
         }
 

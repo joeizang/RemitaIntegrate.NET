@@ -24,7 +24,7 @@ namespace RemitaIntegrate.NET.Config
             ServiceTypeId = serviceTypeId;
             ApiKey = apiKey;
             GateWayUrl = "https://login.remita.net/remita/ecomm/init.reg";
-            CheckStatusUrl = "https://login.remita.net/remita/ecomm";
+            BaseUrl = "https://login.remita.net/remita/ecomm";
         }
 
         public RemitaConfig()

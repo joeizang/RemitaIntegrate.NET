@@ -40,4 +40,12 @@ namespace RemitaIntegrate.NETTests
         }
     }
 
+    public class TestRemitaConfig1 : RemitaConfig
+    {
+        public TestRemitaConfig1():base()
+        {
+                
+        }
+    }
+
 }

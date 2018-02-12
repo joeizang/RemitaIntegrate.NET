@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using RemitaIntegrate.NET.Exceptions;
 using RemitaIntegrate.NET.Abstractions;
+using System.Collections.Generic;
 
 namespace RemitaIntegrate.NET.Config
 {
@@ -38,32 +39,15 @@ namespace RemitaIntegrate.NET.Config
         /// <param name="merchantId">ID of merchant from Remita</param>
         /// <param name="serviceType">Reference type that holds ICollection of service types</param>
         /// <param name="apiKey">ApiKey given by Remita</param>
-        public RemitaConfig(string merchantId, ServiceType serviceType, string apiKey)
+        public RemitaConfig(string merchantId, List<ServiceType> serviceTypes, string apiKey)
         {
             if (string.IsNullOrWhiteSpace(merchantId) && string.IsNullOrWhiteSpace(apiKey) 
-                                                      && serviceType == null || serviceType.ServiceTypes.Count < 1)
+                                                      && serviceTypes == null || serviceTypes.Count < 1)
                 throw new RemitaConfigException("You are missing either merchant id, api key or your service types.");
             MerchantId = merchantId;
             ApiKey = apiKey;
-            SetServiceTypes(serviceType);
+            ServiceTypes = serviceTypes;
         }
-
-        protected void SetServiceTypes(ServiceType servicet)
-        {
-            foreach (var service in servicet.ServiceTypes)
-            {
-                ServiceTypes.Add(service.Key, service.Value);
-            }
-        }
-
-
-
-        //public const string MERCHANTID = "2587711795";
-        //public const string CHECKSTATUSURL = "https://login.remita.net/remita/ecomm";
-        //public const string GATEWAYURL = "https://login.remita.net/remita/ecomm/init.reg";
-        //public const string CHECKSTATUSURL = "https://login.remita.net/remita/ecomm";
-        //public const string SERVICETYPEID = "2587615591";
-        //public const string APIKEY = "245183";
 
         
     }

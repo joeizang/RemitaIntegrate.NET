@@ -6,12 +6,11 @@ namespace RemitaIntegrate.NET.Config
 {
     public class ServiceType
     {
-        public Dictionary<string,string> ServiceTypes { get; set; }
+        public int ServiceTypeId { get; set; }
 
-        public ServiceType()
-        {
+        public string ServiceTypeName { get; set; }
 
-        }
-        
+        public string ServiceTypeNumber { get; set; }
+
     }
 }

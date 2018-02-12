@@ -17,25 +17,25 @@ namespace RemitaIntegrate.NETTests
         {
             //Arrange
             //var servicet = new ServiceType("schoolfees", "89878768");
-            var servicet = new ServiceType
-            {
-                ServiceTypes = new Dictionary<string, string>()
-            };
-            servicet.ServiceTypes.Add("hostelfees","23089983");
-            servicet.ServiceTypes.Add("courseregistration","23726349");
+
+            var serviceTypes = new List<ServiceType>();
+            serviceTypes.Add(new ServiceType
+            { ServiceTypeId = 1, ServiceTypeName = "hostelfees", ServiceTypeNumber = "23089983" });
+            serviceTypes.Add(new ServiceType
+            { ServiceTypeId = 2, ServiceTypeName = "courseregistration", ServiceTypeNumber = "23726349" });
             var sample = new RemitaConfig
             {
-                ServiceTypes = new Dictionary<string, string>()
+                ServiceTypes = new List<ServiceType>()
             };
 
-            sample.ServiceTypes = servicet.ServiceTypes;
+            sample.ServiceTypes = serviceTypes;
             
             //Act
             var result = sample.ServiceTypes.Count;
 
             //Assert
             //Assert.AreEqual(2,result);
-            Assert.AreEqual(true,sample.ServiceTypes.ContainsKey("hostelfees"));
+            Assert.AreEqual(true,sample.ServiceTypes.Find(s => s.ServiceTypeName.Equals("hostelfees")));
 
         }
     }

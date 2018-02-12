@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.Text;
 
 namespace RemitaIntegrate.NET
-{ }
+{ 
     /// <summary>
     /// Represents reply gotten from remita for every transaction
     /// </summary>

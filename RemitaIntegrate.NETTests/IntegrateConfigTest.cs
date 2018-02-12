@@ -35,7 +35,7 @@ namespace RemitaIntegrate.NETTests
 
             //Assert
             //Assert.AreEqual(2,result);
-            Assert.AreEqual(true,sample.ServiceTypes.Find(s => s.ServiceTypeName.Equals("hostelfees")));
+            Assert.AreEqual(true,sample.ServiceTypes.Any(s => s.ServiceTypeName.Equals("hostelfees")));
 
         }
     }

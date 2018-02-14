@@ -2,6 +2,7 @@
 using RemitaIntegrate.NET.Exceptions;
 using RemitaIntegrate.NET.Abstractions;
 using System.Collections.Generic;
+using System;
 
 namespace RemitaIntegrate.NET.Config
 {
@@ -49,6 +50,5 @@ namespace RemitaIntegrate.NET.Config
             ServiceTypes = serviceTypes;
         }
 
-        
     }
 }

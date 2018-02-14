@@ -7,14 +7,6 @@ namespace RemitaIntegrate.NET.Abstractions
 {
     public abstract class IntegrateConfig
     {
-        
-
-        //public const string MERCHANTID = "2587711795";
-        //public const string CHECKSTATUSURL = "https://login.remita.net/remita/ecomm";
-        //public const string GATEWAYURL = "https://login.remita.net/remita/ecomm/init.reg";
-        //public const string CHECKSTATUSURL = "https://login.remita.net/remita/ecomm";
-        //public const string SERVICETYPEID = "2587615591";
-        //public const string APIKEY = "245183";
 
         public string MerchantId { get; protected set; }
 
@@ -28,7 +20,7 @@ namespace RemitaIntegrate.NET.Abstractions
         
         public string ApiKey { get; protected set; }
 
-        public string GateWayUrl { get; set; } = "https://login.remita.net/remita/ecomm/init.reg";
+        public string GateWayUrl { get; protected set; } = "https://login.remita.net/remita/ecomm/init.reg";
 
         public string BaseUrl { get; protected set; } = "https://login.remita.net/remita/ecomm";
 

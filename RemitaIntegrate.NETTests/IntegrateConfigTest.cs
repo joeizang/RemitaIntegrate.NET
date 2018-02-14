@@ -19,13 +19,14 @@ namespace RemitaIntegrate.NETTests
             //var servicet = new ServiceType("schoolfees", "89878768");
 
             var serviceTypes = new List<ServiceType>();
+
             serviceTypes.Add(new ServiceType
-            { ServiceTypeId = 1, ServiceTypeName = "hostelfees", ServiceTypeNumber = "23089983" });
+            { Id = 1, ServiceTypeName = "hostelfees", ServiceTypeNumber = "23089983" });
             serviceTypes.Add(new ServiceType
-            { ServiceTypeId = 2, ServiceTypeName = "courseregistration", ServiceTypeNumber = "23726349" });
+            { Id = 2, ServiceTypeName = "courseregistration", ServiceTypeNumber = "23726349" });
+
             var sample = new RemitaConfig
             {
-                ServiceTypes = new List<ServiceType>()
             };
 
             sample.ServiceTypes = serviceTypes;
@@ -42,10 +43,7 @@ namespace RemitaIntegrate.NETTests
 
     public class TestRemitaConfig1 : RemitaConfig
     {
-        public TestRemitaConfig1():base()
-        {
-                
-        }
+        
     }
 
 }

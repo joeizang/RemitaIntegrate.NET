@@ -68,20 +68,6 @@ namespace RemitaIntegrate.NETTests
 
         }
 
-        //[Test]
-        //public void IntegrationTestToDemoSiteReturnsRemitaResponse()
-        //{
-        //    var config = new RemitaIntegrateConfig("2547916", "4430731", "1946");
-        //    var hasher = new RemitaHashGenerator(config, new SHA512Managed());
-        //    var integrator = new RemitaGateWayIntegrator(hasher);
-        //    var url = string.Empty;
-        //    //Act
-        //    var result = integrator.PerformPaymentStatusCheck("636516010398923976");
-
-        //    //Assert
-        //    //Assert.IsFalse(!string.IsNullOrWhiteSpace(result.Rrr));
-
-        //}
     }
 
     public class JsonThing

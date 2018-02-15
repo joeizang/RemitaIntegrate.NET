@@ -29,7 +29,7 @@ namespace RemitaIntegrate.NETTests
             };
 
             var config = new TestRemitaConfig("2547916", "77783221234", "2345");
-            var hasher = new RemitaHashGenerator(config, new SHA512Managed());
+            var hasher = new RemitaHashGenerator(config);
             remitapost.MerchantId = config.MerchantId;
             remitapost.ServiceTypeId = config.ServiceTypeId;
             //Act

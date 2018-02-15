@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RemitaIntegrate.NET.Abstractions
+﻿namespace RemitaIntegrate.NET.Abstractions
 {
-    public interface IGatewayIntegrator
+    public interface IGateWayIntegrator
     {
-        RemitaResponse PerformPaymentStatusCheck(string orderid, string url = null);
-
         RemitaResponse CheckRrrStatus(string rrr);
+        string PerformNewPaymentHashing(RemitaPost post);
+        RemitaResponse PerformPaymentStatusCheck(string orderId);
+        RemitaResponse PerformPaymentStatusCheck(string orderId, string url = null);
     }
 }

@@ -18,10 +18,4 @@
     <PackageReference Include="Unity" Version="5.5.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="UnityHelper">
-      <HintPath>..\..\..\..\Desktop\UnityHelper.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

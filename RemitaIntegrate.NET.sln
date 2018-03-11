@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemitaIntegrate.NET", "RemitaIntegrate.NET\RemitaIntegrate.NET.csproj", "{8BF26C12-C242-472E-AE02-9AA075E70890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemitaIntegrate.NETTests", "RemitaIntegrate.NETTests\RemitaIntegrate.NETTests.csproj", "{7A34C908-99C0-42E1-A657-6D6727EA7C02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemitaIntegrate.NETTests", "RemitaIntegrate.NETTests\RemitaIntegrate.NETTests.csproj", "{7A34C908-99C0-42E1-A657-6D6727EA7C02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D6BD098F-DB2E-40B1-B034-C9BB35D3384E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVCApp", "SampleMVCApp\SampleMVCApp.csproj", "{CEBBCB8F-1018-42AC-89F7-8ECA3225A618}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{7A34C908-99C0-42E1-A657-6D6727EA7C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A34C908-99C0-42E1-A657-6D6727EA7C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A34C908-99C0-42E1-A657-6D6727EA7C02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEBBCB8F-1018-42AC-89F7-8ECA3225A618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEBBCB8F-1018-42AC-89F7-8ECA3225A618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEBBCB8F-1018-42AC-89F7-8ECA3225A618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEBBCB8F-1018-42AC-89F7-8ECA3225A618}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CEBBCB8F-1018-42AC-89F7-8ECA3225A618} = {D6BD098F-DB2E-40B1-B034-C9BB35D3384E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {30AC9EA7-5D58-44F5-89EE-5A2BAA8E9D91}

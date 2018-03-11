@@ -42,7 +42,7 @@ namespace RemitaIntegrate.NET
         /// Enum that contains the different payment types from Remita
         /// </summary>
         [Display(Name ="Remita Payment Type")]
-        public PaymentType RemitaPaymentType { get; set; }
+        public string RemitaPaymentType { get; set; }
 
         /// <summary>
         /// Self Generated and must be sent with every transaction to Remita

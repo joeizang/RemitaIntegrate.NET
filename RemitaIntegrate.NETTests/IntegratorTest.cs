@@ -61,7 +61,7 @@ namespace RemitaIntegrate.NETTests
                 PayerPhone = "08032444499",
                 OrderId = DateTimeOffset.UtcNow.Ticks.ToString(),
                 ResponseUrl = "http://localhost/testing",
-                RemitaPaymentType = PaymentType.VISA
+                RemitaPaymentType = PaymentType.VISA.ToString()
             };
 
             post.Hash = hasher.HashRemitaRequest(post);

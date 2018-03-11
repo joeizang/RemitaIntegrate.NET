@@ -21,7 +21,7 @@ namespace RemitaIntegrate.NETTests
             {
                 Amount = "500",
                 ResponseUrl = "http://testdomain.local/returnurl",
-                RemitaPaymentType = PaymentType.MASTERCARD,
+                RemitaPaymentType = PaymentType.MASTERCARD.ToString(),
                 OrderId = DateTimeOffset.UtcNow.Ticks.ToString(),
                 PayerEmail = "someemail@testdomain.local",
                 PayerName = "Tester Domain",

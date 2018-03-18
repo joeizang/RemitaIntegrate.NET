@@ -22,6 +22,8 @@ namespace SampleMVCApp.Controllers
 
         public HomeController()
         {
+            //demo credentails provided by remita for use in development.
+            //substitute with actual live credentials.
             config = new SampleConfig("2547916", "4430731", "1946");
             _hasher = new RemitaHashGenerator(config);
             //Better way would be to use DI to inject everything rather than newing up thing in the controller

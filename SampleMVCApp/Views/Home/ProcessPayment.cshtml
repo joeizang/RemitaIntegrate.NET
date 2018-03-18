@@ -1,6 +1,4 @@
-﻿@using RemitaIntegrate.NET.Abstractions
-@using SampleMVCApp.Infrastructure
-@model SampleMVCApp.Models.SampleRemitaPost
+﻿@model SampleMVCApp.Models.SampleRemitaPost
 
 @{
     ViewBag.Title = "ProcessPayment";
@@ -9,114 +7,33 @@
 <h2>ProcessPayment</h2>
 
 
-@using (Html.BeginForm(null,null,FormMethod.Post, new
-{
-    @action= "http://www.remitademo.net/remita/ecomm/init.reg",
-    @id = "remitaPayform"
+<form method="post" action= "http://www.remitademo.net/remita/ecomm/init.reg", id="remitaPayform">
 
-}))
-{
-    @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>SampleRemitaPost</h4>
+        <h4>Please wait while we handle your request!</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.MerchantId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+
                 @Html.HiddenFor(model => model.MerchantId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hash, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 @Html.HiddenFor(model => model.Hash, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hash, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Rrr, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.Rrr, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Rrr, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ResponseUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 @Html.HiddenFor(model => model.ResponseUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ResponseUrl, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RemitaPaymentType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 @Html.HiddenFor(model => model.RemitaPaymentType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RemitaPaymentType, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OrderId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 @Html.HiddenFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OrderId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.PayerId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.PayerId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayerId, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PayerEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        
                 @Html.HiddenFor(model => model.PayerEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayerEmail, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PayerName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 @Html.HiddenFor(model => model.PayerName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayerName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        
                 @Html.HiddenFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PayerPhone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 @Html.HiddenFor(model => model.PayerPhone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayerPhone, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ServiceTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
                 @Html.HiddenFor(model => model.ServiceTypeId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ServiceTypeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -124,19 +41,21 @@
             </div>
         </div>
     </div>
-}
+</form>
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
    
 }
 
-<script>
-    $(function() {
-        $("#remitaPayform").submit();
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#remitaPayform").submit()
     })
+
 </script>
